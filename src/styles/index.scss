@@ -1,0 +1,74 @@
+
+$--blue-color: #4DA1FF;
+$--color-hover-white:#f0f0f0;
+$--color-white: #fff;
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+body .el-table th.gutter {
+  display: table-cell !important;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+.raiyi-container{
+  max-width: 1200px;
+  margin:0 auto;
+}
+.top-tabs{
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  z-index: 9;
+  background: rgba(255,255,255,.6);
+}
+.raiyi-banner{
+  max-width: 1200px;
+  margin:0 auto;
+}
+
