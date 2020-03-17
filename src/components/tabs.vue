@@ -40,6 +40,7 @@ export default {
   methods:{
     handleSelect(key,keyPath){
       console.log(key, keyPath);
+      this.$message.success('你点了该路由：'+key)
     }
   }
 }

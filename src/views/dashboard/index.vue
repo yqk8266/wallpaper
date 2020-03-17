@@ -1,336 +1,254 @@
-<template class="container-water-fall">
-  <div>
-    <waterfall :col="col" :data="data" loadDistance="200" @loadmore="loadmore">
-      <template>
-        <div class="cell-item" v-for="(item,index) in data" :key="index">
-          <img v-if="item.img" :lazy-src="item.img" alt="加载错误" />
-        </div>
-      </template>
-    </waterfall>
+<template>
+  <div class="waterfall-container">
+    <vue-viewer
+      v-if="showPreviewVisible"
+      @hidden="hidePreview"
+      @viewed="switchPreview"
+      ref="preview"
+      :navbar="0"
+      style="display:none;"
+      :images="previewImg"
+    ></vue-viewer>
+    <vue-waterfall-easy
+      :imgsArr="imgArr"
+      :imgWidth="350"
+      :maxCols="cols"
+      :gap="10"
+      @click="showPreview"
+      @scrollReachBottom="getData"
+    >
+      <!-- <div slot="waterfall-head">1920*1080</div> -->
+      <div class="img-info" slot-scope="props">
+        <span class="some-info">1920 x 1080</span>
+      </div>
+    </vue-waterfall-easy>
+
     <loading :show="loading" />
   </div>
 </template>
 
 <script>
 import loading from "@/views/Loading";
+import vueWaterfallEasy from 'vue-waterfall-easy'
+ import VueViewer from 'vue-viewerjs'
+
 export default {
   name:'dashboard',
    components: {
-    loading
+    loading,
+    vueWaterfallEasy,
+    VueViewer
   },
   data(){
     return{
       data:[],
+      sd:1,
+      showPreviewVisible:false,
+      previewImg:[],
+      cols:4,
       loading:false,
-       originData: [
+      imgArr:[],
+      imgsArr:[
         {
           img:
-            "https://image.watsons.com.cn//upload/8a316140.png?w=377&h=451&x-oss-process=image/resize,w_1080",
+            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
           avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
+            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
           title: "最近浴室新宠，日系神仙好物了解一下～",
           user: "www",
           like: "953"
         },
         {
           img:
-            "https://image.watsons.com.cn//upload/083767f0.JPG?w=828&h=620&x-oss-process=image/resize,w_1080",
+            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
           avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
+            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
+          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "952"
+        },
+          
+       
+          {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/221712-15832450325090.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/4g/wallhaven-4g7eqe.jpg",
+          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200223/230244-1582470164f4f4.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/221712-15832450325090.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/4g/wallhaven-4g7eqe.jpg",
+          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200223/230244-1582470164f4f4.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          user: "www",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
           title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
           user: "迷人的小妖精迷人的小妖精",
           like: "952"
         },
         {
           img:
-            "https://image.watsons.com.cn//upload/02a4f38d.jpg?w=1067&h=1067&x-oss-process=image/resize,w_1080",
+            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
           avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
+            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
           title: "最近浴室新宠，日系神仙好物了解一下～",
           user: "迷人的小妖精迷人的小妖精",
           like: "953"
         },
         {
           img:
-            "https://image.watsons.com.cn//upload/589585c1.jpeg?x-oss-process=image/resize,w_1080",
+            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
           avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/d862d932.jpg?w=1080&h=1440&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
+            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
           title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
+          user: "www",
           like: "953"
         },
         {
           img:
-            "https://image.watsons.com.cn//upload/eb4fb58f.jpg?w=1080&h=1080&x-oss-process=image/resize,w_1080",
+            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
           avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
+            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
           title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/71d19462.jpg?x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title:
-            "贵妇级好用的水乳有哪些呢？千万不要去乱尝试贵妇级好用的水乳有哪些呢？",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/415f984f.jpeg?w=828&h=1104&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "千万不要去乱尝试贵妇级好用的水乳有哪些呢？千万不要去乱尝试",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/5c3e51e4.jpg?w=720&h=960&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "夏天用这款姨妈巾，让你体验真正的清爽",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/92761043.JPG?w=1000&h=999&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精123",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/da61c0f5.jpg?w=959&h=958&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "千万不要去乱尝试贵妇级好用的水乳有哪些呢？千万不要去乱尝试",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/fcd68df4.jpg?w=1080&h=1080&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/bef41e67.JPG?w=712&h=534&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "夏天用这款姨妈巾，让你体验真正的清爽",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/25ab20fe.JPG?w=1000&h=1200&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精123",
-          like: "953"
-        },
-        {
-          img:
-            "https://ci.xiaohongshu.com/eb971d00-05ab-5b2a-ba03-52d8f544c42b?imageView2/2/w/400/q/50/format/jpg",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/4a3c1788.jpg?w=823&h=1000&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "夏天用这款姨妈巾，让你体验真正的清爽",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/0a89e6b7.jpg?w=1080&h=1920&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "千万不要去乱尝试贵妇级好用的水乳有哪些呢？千万不要去乱尝试",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/99253111.jpg?w=1080&h=1920&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精123",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/13afe9a7.jpg?x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title:
-            "贵妇级好用的水乳有哪些呢？千万不要去乱尝试贵妇级好用的水乳有哪些呢？千万不要去乱尝试贵妇级好用的水乳有哪些呢？千万不要去乱尝试",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/98c7c4c3.jpg?w=1210&h=1210&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/54c5d7b4.jpg?w=828&h=991&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/71d19462.jpg?x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "夏天用这款姨妈巾，让你体验真正的清爽",
-          user: "迷人的小妖精迷人的小妖精123",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/642cb83c.jpeg?w=1080&h=1080&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/31e42833.jpg?w=750&h=750&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/92761043.JPG?w=1000&h=999&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "夏天用这款姨妈巾，让你体验真正的清爽",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/60cc9b8e.jpg?w=991&h=744&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精123",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/b709ed72.jpg?w=552&h=414&x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "https://image.watsons.com.cn//upload/137b50b0.jpg?x-oss-process=image/resize,w_1080",
-          avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
-          title: "夏天用这款姨妈巾，让你体验真正的清爽",
           user: "迷人的小妖精迷人的小妖精",
           like: "952"
         },
         {
           img:
-            "https://image.watsons.com.cn//upload/31e42833.jpg?w=750&h=750&x-oss-process=image/resize,w_1080",
+            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
           avatar:
-            "https://img.xiaohongshu.com/avatar/5b7d198a7e6e15000155f7c9.jpg@80w_80h_90q_1e_1c_1x.jpg",
+            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
           title: "最近浴室新宠，日系神仙好物了解一下～",
           user: "迷人的小妖精迷人的小妖精",
           like: "953"
-        }
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          user: "www",
+          like: "953"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
+          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "952"
+        },
+        {
+          img:
+            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
+          avatar:
+            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          user: "迷人的小妖精迷人的小妖精",
+          like: "953"
+        },
+        
+       
+     
       ],
-      col:5
     }
   },
-  computed:{
-    itemWidth(){  
-      return (138*0.5*(document.documentElement.clientWidth/375))  
-    },
-    gutterWidth(){
-      return (9*0.5*(document.documentElement.clientWidth/375))
-    }
+  created(){
+     this.imgsArr.forEach(item=>{
+      item.src = item.img
+      item.href = item.avatar
+      item.url = item.avatar
+    })
+    this.getData()
   },
   mounted(){
-    this.data = this.originData||[]
+
+    // this.getData()
+    // this.imgsArr.forEach(item=>{
+    //   item.src = item.img
+    //   item.href = item.avatar
+    //   item.url = item.avatar
+    // })
   },
   methods:{
-    scroll(scrollData){
-      console.log(scrollData)
+    switchPreview(){
+      console.log(1001)
     },
-    loadmore() {
-      this.loading = true;
-      setTimeout(() => {
-        this.data = this.data.concat(this.originData);
-        this.loading = false;
-      }, 1000);
-    }
+    hidePreview(e){
+      console.log(e)
+      this.showPreviewVisible = false
+    },
+    showPreview(event, { index, value }){
+      event.preventDefault()
+      this.showPreviewVisible = true
+      setTimeout(()=>{
+         console.log(123)
+        this.$refs.preview.show()
+        this.$refs.preview.view(index)
+      },200)
+     
+     
+    },
+    getData(){
+      this.imgArr = this.imgArr.concat(this.imgsArr || [])
+      this.previewImg=[]
+      this.imgArr.forEach(row=>{
+        this.previewImg.push({
+          url:row.avatar,
+          title:row.title
+        })
+      })
+    },
   }
 }
 </script>
 <style lang="scss">
-.container-water-fall {
-  width: 100vw;
-  box-sizing: border-box;
-}
-.cell-item {
-  width: 100%;
-  background: #ffffff;
-  border: 2px solid #f0f0f0;
-  border-radius: 12px 12px 12px 12px;
-  overflow: hidden;
-  box-sizing: border-box;
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-}
 </style>

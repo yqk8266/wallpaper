@@ -5,7 +5,7 @@
 const port = 8080 // dev port
 
 module.exports = {
-  publicPath: '/admin/',
+  publicPath: '/bizhi/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: true,

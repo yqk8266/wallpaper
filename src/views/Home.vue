@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-body">
     <r-tabs class="top-tabs" />
     <div class="raiyi-container">
       <keep-alive>
