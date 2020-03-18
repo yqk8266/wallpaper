@@ -10,6 +10,7 @@
   <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
   <title>美女壁纸_壁纸_高清/4K/1080/游戏图片网</title>
   <link href="./infocss/index.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.5.0/viewer.min.css" type="text/css">
 </head>
 
 <body>
@@ -58,7 +59,7 @@
     </div>
 
 
-    <div class="wrap clearfix">
+    <div class="wrap clearfix" id="app" v-cloak>
       <div id="main">
         <!-- <div class="loaction"><span>当前位置：<a href="/">4K</a> &gt; <a href="/4kmeinv">4K美女图片</a> &gt; 白色睡裙美女 侧躺 书 烛光
             4k美女壁纸3840x2160</span></div> -->
@@ -67,8 +68,7 @@
             <div class="photo-hd">
               <h1>白色睡裙美女 侧躺 书 烛光 4k美女壁纸3840x2160</h1>
             </div>
-            <div class="photo-pic"><a href="" id="img"><img
-                  src="http://pic.netbian.com/uploads/allimg/191129/185356-1575024836590b.jpg"
+            <div class="photo-pic"><a href="javascript:;" id="img"><img src="./bizhi/1_big.jpg"
                   data-pic="/uploads/allimg/191129/185356-1575024836972e.jpg" alt="白色睡裙美女 侧躺 书 烛光 4k美女壁纸3840x2160"
                   title="白色睡裙美女 侧躺 书 烛光 4k美女壁纸3840x2160"></a></div>
             <div class="photo-txt">
@@ -82,20 +82,31 @@
                 target="_blank">8K壁纸</a> <a href="http://pic.netbian.com/e/search/result/?searchid=377"
                 target="_blank">手机壁纸</a></div>
           </div>
-          <div class="side" id="app">
-            <div class="downpic"><a href="javascript:;" data-id="25191">精品推荐</a></div>
+          <div class="side">
+            <div class="downpic"><a href="javascript:;">淘宝网精品推荐</a></div>
             <div v-for="item in list" :key="item.id" class="good_box">
               <div class="infor">
-                <p><span> <a target="_blank" href="/4kmeinv/">{{item.goodsName}}</a> </span> </p>
-                <!-- <span>尺寸<span>3840x2160</span></p> -->
-                <!-- <span>链接 <span><a target="_blank" :href="item.tbkUrl">{{item.tbkUrl}}</a></span></p> -->
-                <!-- <span>上传时间<span>2019-11-29 19:05:55</span></p> -->
+                <p><span> <a target="_blank" :href="item.couponPromoteUrl || item.tbkUrl">{{item.goodsName}}</a> </span>
+                </p>
               </div>
               <div>
-                <a :href="item.tbkUrl" target="_blank"><img :src="item.goodsImageUrl" width="300" height="165"
-                    border="0"></a></div>
+                <a :href="item.couponPromoteUrl || item.tbkUrl" target="_blank"><img :src="item.goodsImageUrl"
+                    width="318" height="318" border="0"></a></div>
+              <div class="infor">
+                <p><span>价格：<span style="color:#FF0036"><i class="price-symbol">¥</i>
+                      <span class="price">{{item.price}}</span> </span></span>
+                </p>
+                <div class="coupon-btn get-coupon-btn"
+                  style="background-image: url(./img/TB16d.1ykPoK1RjSZKbXXX1IXXa-665-115.png_336x336.jpg_.webp)"
+                  @click="goPage(item)">
+                  <div class="coupon-info">
+                    <div class="coupon-amount">{{item.couponPrice}}</div>
+                  </div>
+                  <div class="btn-name">立即领券</div>
+                </div>
+              </div>
             </div>
-            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": ["mshare", "qzone", "tsina", "bdysc", "weixin", "renren", "tqq", "bdxc", "tieba", "douban", "bdhome", "sqq", "ibaidu", "huaban", "duitang", "copy"], "bdPic": "", "bdStyle": "0", "bdSize": "32" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "weixin", "huaban"], "viewText": "分享到：", "viewSize": "32" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+            <!-- <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": ["mshare", "qzone", "tsina", "bdysc", "weixin", "renren", "tqq", "bdxc", "tieba", "douban", "bdhome", "sqq", "ibaidu", "huaban", "duitang", "copy"], "bdPic": "", "bdStyle": "0", "bdSize": "32" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "weixin", "huaban"], "viewText": "分享到：", "viewSize": "32" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script> -->
             <!-- <div>
               <a href="https://ibaotu.com/guanggao/1-0-0-0-3-1.html?format_type=0&amp;spm=batw1" target="_blank"><img
                   src="http://pic.netbian.com/uploads/allimg/191129/185356-1575024836590b.jpg" width="300" height="165"
@@ -108,6 +119,7 @@
 </body>
 <script src="./infojs/vue.js"></script>
 <script src="./infojs/axios.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.5.0/viewer.min.js"></script>
 <script>
   var app = new Vue({
     el: '#app',
@@ -116,15 +128,42 @@
     },
     mounted() {
       this.getList()
+      const viewer = new Viewer(document.getElementById('img'), {
+        inline: false,
+        navbar: false,
+        title: false,
+        toolbar: {
+          zoomIn: false,
+          zoomOut: false,
+          oneToOne: false,
+          reset: false,
+          prev: false,
+          play: {
+            show: 1,
+            size: 'large',
+          },
+          next: false,
+          rotateLeft: false,
+          rotateRight: false,
+          flipHorizontal: false,
+          flipVertical: false,
+        },
+      });
     },
     methods: {
+      goPage: function (row) {
+        let endDate = new Date(row.couponEndDate).getTime()
+        let nowTime = new Date().getTime()
+        if (endDate - nowTime > 0) {
+          window.open(row.couponPromoteUrl, '_blank')
+        } else {
+          window.open(row.tbkUrl, '_blank')
+        }
+      },
       getList: function () {
         let self = this
-        axios.post(`http://10.10.10.15:8088/wx-api/service/goods/recommend/list?page=0&size=2`, { page: 0, size: 2 }).then(function (response) {
-          console.log(response.data.data.list);
+        axios.post(`http://10.10.10.15:8088/wx-api/service/goods/recommend/list?page=0&size=1`, { page: 0, size: 2 }).then(function (response) {
           self.list = response.data.data.list
-          console.log(this)
-          console.log(self.list)
         }).catch(function (error) {
           console.log(error);
         });

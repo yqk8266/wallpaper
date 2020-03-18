@@ -1,25 +1,31 @@
 <template>
   <div class="waterfall-container">
-    <vue-viewer
-      v-if="showPreviewVisible"
-      @hidden="hidePreview"
-      @viewed="switchPreview"
-      ref="preview"
-      :navbar="0"
-      style="display:none;"
-      :images="previewImg"
-    ></vue-viewer>
     <vue-waterfall-easy
       :imgsArr="imgArr"
-      :imgWidth="350"
+      :imgWidth="330"
       :maxCols="cols"
-      :gap="10"
-      @click="showPreview"
+      :gap="5"
+      @click="goInfo"
       @scrollReachBottom="getData"
     >
-      <!-- <div slot="waterfall-head">1920*1080</div> -->
+      <div slot="waterfall-head">
+        <div class="banner-box">
+          <Swiper v-if="bannerList.length > 0" interval="4000">
+            <Slide>
+              <a href="/info.html">
+                <img src="/bizhi/banner_2.jpg" alt="加载错误" />
+              </a>
+            </Slide>
+            <Slide v-for="(item,index) in bannerList" :key="index">
+              <a href="/info.html">
+                <img src="/bizhi/banner_1.jpg" alt="加载错误" />
+              </a>
+            </Slide>
+          </Swiper>
+        </div>
+      </div>
       <div class="img-info" slot-scope="props">
-        <span class="some-info">1920 x 1080</span>
+        <span class="some-info">{{props.value.resolution}}</span>
       </div>
     </vue-waterfall-easy>
 
@@ -30,171 +36,194 @@
 <script>
 import loading from "@/views/Loading";
 import vueWaterfallEasy from 'vue-waterfall-easy'
- import VueViewer from 'vue-viewerjs'
+import { Swiper, Slide } from 'vue-swiper-component';
 
 export default {
   name:'dashboard',
    components: {
     loading,
     vueWaterfallEasy,
-    VueViewer
+    Swiper,
+    Slide
   },
   data(){
     return{
       data:[],
-      sd:1,
-      showPreviewVisible:false,
-      previewImg:[],
-      cols:4,
+      cols:3,
+      bannerList:[],
       loading:false,
       imgArr:[],
       imgsArr:[
         {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
+          src:
+            "/bizhi/1_small.jpg",
+          href:
+            "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "www",
-          like: "953"
+          resolution: "1920 x 1080"
         },
         {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "952"
+          src:
+            "/bizhi/2_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
         },
-          
+        {
+          src:
+            "/bizhi/3_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/4_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/5_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/6_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/7_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/8_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/9_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/7_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/8_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/9_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/7_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/8_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/9_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/7_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/8_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/9_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/7_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/8_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
+        {
+          src:
+            "/bizhi/9_small.jpg",
+          href:
+            "/info.html",
+          title: "最近浴室新宠，日系神仙好物了解一下～",
+          resolution: "1920 x 1080"
+        },
        
-          {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/221712-15832450325090.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/4g/wallhaven-4g7eqe.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200223/230244-1582470164f4f4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/221712-15832450325090.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/4g/wallhaven-4g7eqe.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200223/230244-1582470164f4f4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "www",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "952"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "www",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "952"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/224125-1583246485f9d4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/4v/wallhaven-4v9ml0.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "www",
-          like: "953"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/223838-158324631800ad.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/nz/wallhaven-nzqy3y.jpg",
-          title: "150元搞定全套护肤品，这些护肤好物必须交出来！",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "952"
-        },
-        {
-          img:
-            "http://pic.netbian.com/uploads/allimg/200303/222228-158324534867a4.jpg",
-          avatar:
-            "https://w.wallhaven.cc/full/eo/wallhaven-eol96o.jpg",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          user: "迷人的小妖精迷人的小妖精",
-          like: "953"
-        },
+      
         
        
      
@@ -202,50 +231,33 @@ export default {
     }
   },
   created(){
-     this.imgsArr.forEach(item=>{
-      item.src = item.img
-      item.href = item.avatar
-      item.url = item.avatar
-    })
-    this.getData()
+    this.getData() //测试用数据
+    this.getBanner()
+    // this.getList()
   },
   mounted(){
-
-    // this.getData()
-    // this.imgsArr.forEach(item=>{
-    //   item.src = item.img
-    //   item.href = item.avatar
-    //   item.url = item.avatar
-    // })
+   
   },
   methods:{
-    switchPreview(){
-      console.log(1001)
+    getList(){
+      this.$axios.get('/api/v1/recommend/list?page=1&size=18').then(res=>{
+        this.imgArr = this.imgArr.concat(res.data.data || [])
+      }) 
     },
-    hidePreview(e){
-      console.log(e)
-      this.showPreviewVisible = false
+    getBanner(){
+      this.$axios.get('/api/v1/banner/listByType?type=wallpaper').then(res=>{
+        this.bannerList =res.data.data || []
+      })
     },
-    showPreview(event, { index, value }){
-      event.preventDefault()
-      this.showPreviewVisible = true
-      setTimeout(()=>{
-         console.log(123)
-        this.$refs.preview.show()
-        this.$refs.preview.view(index)
-      },200)
-     
-     
+    callback(){
+
+    },
+    goInfo(event, { index, value }){
+      // event.preventDefault()
+      console.log(index,value)
     },
     getData(){
       this.imgArr = this.imgArr.concat(this.imgsArr || [])
-      this.previewImg=[]
-      this.imgArr.forEach(row=>{
-        this.previewImg.push({
-          url:row.avatar,
-          title:row.title
-        })
-      })
     },
   }
 }

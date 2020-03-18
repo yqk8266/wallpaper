@@ -14,6 +14,20 @@ body .el-table th.gutter {
   display: table-cell !important;
 }
 
+div,
+form,
+img,
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 label {
   font-weight: 700;
 }
@@ -77,11 +91,12 @@ div:focus {
 .raiyi-banner.el-menu.el-menu--horizontal{
   border-bottom:none;
 }
+
+
 .waterfall-container{
   position: absolute;
   top:60px;
   bottom:0;
-  // width:1400px;
   left:0;
   right:0;
   margin:0 auto;
@@ -93,7 +108,7 @@ div:focus {
 
 .vue-waterfall-easy-scroll::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 0px; /*高宽分别对应横竖滚动条的尺寸*/
+  width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
   height: 1px;
 }
 .vue-waterfall-easy-scroll::-webkit-scrollbar-thumb {
@@ -120,4 +135,25 @@ div:focus {
   color:#fff;
   font-size:12px;
   background-color:rgba(50,50,50,.38);
+}
+.banner-box{
+  width: 1000px;
+  margin:0 auto;
+}
+.banner-box .wh_slide{
+  width:100%;
+  // height: 500px;
+}
+.banner-box .wh_slide img{
+  width: 100%;
+  height:100%;
+}
+
+@media screen and (max-width: 768px){
+  .banner-box{
+    width:100%;
+  }
+  .banner-box .wh_slide{
+    height:auto;
+  }
 }

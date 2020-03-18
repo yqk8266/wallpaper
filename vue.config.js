@@ -20,7 +20,8 @@ module.exports = {
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         // target: `http://127.0.0.1:${port}/mock`, // mock
-        target: `http://10.10.80.34:${port}`, // 测试环境
+        // target: `http://10.10.80.34:${port}`, // 测试环境
+        target: `http://10.10.10.15:${port}`, // 陈亮
         // target: `https://apply.data.raiyi.cn`, // 生产环境
         changeOrigin: true,
         pathRewrite: {
