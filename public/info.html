@@ -12,7 +12,7 @@
   <link rel="icon" href="./favicon.ico">
   <title>美女壁纸_壁纸_高清/4K/1080/游戏图片网</title>
   <link href="./infocss/index.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.5.0/viewer.min.css" type="text/css">
+  <link rel="stylesheet" href="./infocss/viewer.css" type="text/css">
 </head>
 
 <body>
@@ -22,32 +22,32 @@
   </noscript>
   <div class="info_main">
     <div class="maincate">
-      <a href="/bizhi">首页</a>
-      <a href="/bizhi/#/fengjing">风景</a>
-      <a href="/bizhi/#/meinv">美女</a>
-      <a href="/bizhi/#/dongman">动漫</a>
-      <a href="/bizhi/#/youxi">游戏</a>
-      <a href="/bizhi/#/qiche">汽车</a>
-      <a href="/bizhi/#/meishi">美食</a>
-      <a href="/bizhi/#/huyan">护眼</a>
-      <a href="/bizhi/#/feizhuliu">非主流</a>
+      <a href="/wallpaper">首页</a>
+      <a href="/wallpaper/#/fengjing">风景</a>
+      <a href="/wallpaper/#/meinv">美女</a>
+      <a href="/wallpaper/#/dongman">动漫</a>
+      <a href="/wallpaper/#/youxi">游戏</a>
+      <a href="/wallpaper/#/qiche">汽车</a>
+      <a href="/wallpaper/#/meishi">美食</a>
+      <a href="/wallpaper/#/huyan">护眼</a>
+      <a href="/wallpaper/#/feizhuliu">非主流</a>
     </div>
+
     <div class="header">
       <div class="head">
-        <a href="/bizhi" class="logo" title="4k壁纸">首页</a>
+        <a href="/wallpaper" class="logo" title="4k壁纸">首页</a>
         <ul class="nav">
-          <li><a href="/bizhi/#/fengjing" class="nav-link" rel="nofollow">风景</a></li>
-          <li><a href="/bizhi/#/meinv" class="nav-link" rel="nofollow">美女</a></li>
-          <li><a href="/bizhi/#/dongman" class="nav-link" rel="nofollow">动漫</a></li>
-          <li><a href="/bizhi/#/youxi" class="nav-link" rel="nofollow">游戏</a></li>
-          <li><a href="/bizhi/#/qiche" class="nav-link" rel="nofollow">汽车</a></li>
-          <li><a href="/bizhi/#/meishi" class="nav-link" rel="nofollow">美食</a></li>
-          <li><a href="/bizhi/#/huyan" class="nav-link" rel="nofollow">护眼</a></li>
-          <li><a href="/bizhi/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a></li>
+          <li><a href="/wallpaper/#/fengjing" class="nav-link" rel="nofollow">风景</a></li>
+          <li><a href="/wallpaper/#/meinv" class="nav-link" rel="nofollow">美女</a></li>
+          <li><a href="/wallpaper/#/dongman" class="nav-link" rel="nofollow">动漫</a></li>
+          <li><a href="/wallpaper/#/youxi" class="nav-link" rel="nofollow">游戏</a></li>
+          <li><a href="/wallpaper/#/qiche" class="nav-link" rel="nofollow">汽车</a></li>
+          <li><a href="/wallpaper/#/meishi" class="nav-link" rel="nofollow">美食</a></li>
+          <li><a href="/wallpaper/#/huyan" class="nav-link" rel="nofollow">护眼</a></li>
+          <li><a href="/wallpaper/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a></li>
         </ul>
       </div>
     </div>
-
 
     <div class="wrap clearfix" id="app" v-cloak>
       <div id="main">
@@ -56,7 +56,7 @@
             <div class="photo-hd">
               <h1>白色睡裙美女 侧躺 书 烛光 4k美女壁纸3840x2160</h1>
             </div>
-            <div class="photo-pic"><a href="javascript:;" id="img"><img src="./bizhi/1_big.jpg"
+            <div class="photo-pic"><a href="javascript:;" id="img"><img src="./wallpaper/1_big.jpg"
                   data-pic="/uploads/allimg/191129/185356-1575024836972e.jpg" alt="白色睡裙美女 侧躺 书 烛光 4k美女壁纸3840x2160"
                   title="白色睡裙美女 侧躺 书 烛光 4k美女壁纸3840x2160"></a></div>
             <div class="photo-txt">
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="side">
-            <div class="downpic"><a href="/bizhi/1_big.jpg" download>下载原图</a></div>
+            <div class="downpic"><a href="/wallpaper/1_big.jpg" download>下载原图</a></div>
             <div v-for="item in list" :key="item.id" class="good_box">
               <div class="infor">
                 <p><span> <a @click="goTb(item)" href="javascript:;">{{item.goodsName}}</a> </span>
@@ -78,7 +78,7 @@
                       <span class="price">{{item.price}}</span> </span></span>
                 </p>
                 <p class="mobile_tkl">
-                  <span class="inviteCode">淘口令：{{item.couponPromoteUrl}}</span>
+                  <span class="inviteCode">淘宝链接：{{item.couponPromoteUrl}}</span>
                 </p>
                 <input style="display: none;" id="inviteCode" class="inviteCode" type="text" />
                 <div class="coupon-btn get-coupon-btn"
@@ -95,11 +95,14 @@
         </div>
       </div>
     </div>
+
+
+
   </div>
 </body>
 <script src="./infojs/vue.js"></script>
 <script src="./infojs/axios.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.5.0/viewer.min.js"></script>
+<script src="./infojs/viewer.js"></script>
 <script>
   var app = new Vue({
     el: '#app',
@@ -137,10 +140,10 @@
         oInput.value = url
         oInput.select();// 选择对象
         if (typeof document.execCommand != 'function') {
-          alert("复制淘口令失败，请长按复制");
+          alert("复制淘宝链接失败，请长按复制");
         }
         document.execCommand("Copy");// 执行浏览器复制命令
-        alert("淘口令复制成功，请至淘宝app打开浏览宝贝");
+        alert("淘宝链接复制成功，请至淘宝app打开浏览宝贝");
       },
       goTb(row) {
         if (this.isWx()) {
