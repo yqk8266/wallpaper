@@ -12,21 +12,21 @@
       <div slot="waterfall-head">
         <div class="banner-box">
           <Swiper v-if="bannerList.length > 0" interval="4000">
-            <Slide>
+            <!-- <Slide>
               <a href="/info.html" target="_blank">
-                <img src="/bizhi/banner_2.jpg" alt="加载错误" />
+                <img src="/wallpaper/banner_2.jpg" alt="加载错误" />
               </a>
-            </Slide>
+            </Slide>-->
             <Slide v-for="(item,index) in bannerList" :key="index">
-              <a href="/info.html" target="_blank">
-                <img src="/bizhi/banner_1.jpg" alt="加载错误" />
+              <a :href="item.toUrl" target="_blank">
+                <img :src="item.resourceUrl" alt="加载错误" />
               </a>
             </Slide>
           </Swiper>
         </div>
         <div class="banners">
           <a href="javascript:;">
-            <img src="/bizhi/ad.jpg" alt />
+            <img src="/wallpaper/wallpaper/ad.jpg" alt />
           </a>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default {
       imgsArr:[
         {
           src:
-            "/bizhi/1_small.jpg",
+            "/wallpaper/1_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -72,7 +72,7 @@ export default {
         },
         {
           src:
-            "/bizhi/2_small.jpg",
+            "/wallpaper/2_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -80,7 +80,7 @@ export default {
         },
         {
           src:
-            "/bizhi/3_small.jpg",
+            "/wallpaper/3_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -88,7 +88,7 @@ export default {
         },
         {
           src:
-            "/bizhi/4_small.jpg",
+            "/wallpaper/4_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -96,7 +96,7 @@ export default {
         },
         {
           src:
-            "/bizhi/5_small.jpg",
+            "/wallpaper/5_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -104,7 +104,7 @@ export default {
         },
         {
           src:
-            "/bizhi/6_small.jpg",
+            "/wallpaper/6_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -112,7 +112,7 @@ export default {
         },
         {
           src:
-            "/bizhi/7_small.jpg",
+            "/wallpaper/7_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -120,7 +120,7 @@ export default {
         },
         {
           src:
-            "/bizhi/8_small.jpg",
+            "/wallpaper/8_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -128,7 +128,7 @@ export default {
         },
         {
           src:
-            "/bizhi/9_small.jpg",
+            "/wallpaper/9_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -136,7 +136,7 @@ export default {
         },
         {
           src:
-            "/bizhi/7_small.jpg",
+            "/wallpaper/7_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -144,7 +144,7 @@ export default {
         },
         {
           src:
-            "/bizhi/8_small.jpg",
+            "/wallpaper/8_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -152,7 +152,7 @@ export default {
         },
         {
           src:
-            "/bizhi/9_small.jpg",
+            "/wallpaper/9_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -160,7 +160,7 @@ export default {
         },
         {
           src:
-            "/bizhi/7_small.jpg",
+            "/wallpaper/7_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -168,7 +168,7 @@ export default {
         },
         {
           src:
-            "/bizhi/8_small.jpg",
+            "/wallpaper/8_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -176,7 +176,7 @@ export default {
         },
         {
           src:
-            "/bizhi/9_small.jpg",
+            "/wallpaper/9_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -184,7 +184,7 @@ export default {
         },
         {
           src:
-            "/bizhi/7_small.jpg",
+            "/wallpaper/7_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -192,7 +192,7 @@ export default {
         },
         {
           src:
-            "/bizhi/8_small.jpg",
+            "/wallpaper/8_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -200,7 +200,7 @@ export default {
         },
         {
           src:
-            "/bizhi/9_small.jpg",
+            "/wallpaper/9_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -208,7 +208,7 @@ export default {
         },
         {
           src:
-            "/bizhi/7_small.jpg",
+            "/wallpaper/7_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -216,7 +216,7 @@ export default {
         },
         {
           src:
-            "/bizhi/8_small.jpg",
+            "/wallpaper/8_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",
@@ -224,7 +224,7 @@ export default {
         },
         {
           src:
-            "/bizhi/9_small.jpg",
+            "/wallpaper/9_small.jpg",
           href:
             "/info.html",
           title: "最近浴室新宠，日系神仙好物了解一下～",

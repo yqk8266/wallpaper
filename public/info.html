@@ -7,7 +7,7 @@
   <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width">
-  <meta name="keywords" content="女孩子_鲸鱼_游戏壁纸,高清游戏壁纸,4k游戏壁纸,4k电脑壁纸,高清电脑壁纸,桌面壁纸,高清桌面壁纸">
+  <meta name="keywords" content="女孩子_鲸鱼,游戏壁纸,高清游戏壁纸,4k游戏壁纸,4k电脑壁纸,高清电脑壁纸,桌面壁纸,高清桌面壁纸">
   <meta name="description" content="女孩子_鲸鱼 清新唯美的4k游戏图片壁纸,满足您的高清壁纸需求">
   <link rel="icon" href="./favicon.ico">
   <title>美女壁纸_壁纸_高清/4K/1080/游戏图片网</title>
@@ -169,7 +169,7 @@
       },
       getList: function () {
         let self = this
-        axios.post(`http://10.10.10.15:8088/wx-api/service/goods/random?size=1`).then(function (response) {
+        axios.post(`http://10.10.80.34/promotion/service/goods/random?size=1`).then(function (response) {
           self.list = response.data.data || []
         }).catch(function (error) {
           console.log(error);

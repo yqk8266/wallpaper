@@ -14,12 +14,12 @@
           <Swiper v-if="bannerList.length > 0" interval="4000">
             <Slide>
               <a href="/info.html" target="_blank">
-                <img src="/bizhi/banner_2.jpg" alt="加载错误" />
+                <img src="/wallpaper/banner_2.jpg" alt="加载错误" />
               </a>
             </Slide>
             <Slide v-for="(item,index) in bannerList" :key="index">
               <a href="/info.html" target="_blank">
-                <img src="/bizhi/banner_1.jpg" alt="加载错误" />
+                <img src="/wallpaper/banner_1.jpg" alt="加载错误" />
               </a>
             </Slide>
           </Swiper>
