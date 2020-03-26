@@ -24,6 +24,11 @@
             </Slide>
           </Swiper>
         </div>
+        <div class="banners">
+          <a href="javascript:;">
+            <img src="/bizhi/ad.jpg" alt />
+          </a>
+        </div>
       </div>
       <div class="img-info" slot-scope="props">
         <span class="some-info">{{props.value.resolution}}</span>
@@ -252,6 +257,8 @@ export default {
         }
         list.forEach(row=>{
           row.src =  row.resourceUrl
+          row.href =  row.sourceUrl
+          
         })
         this.imgArr = this.imgArr.concat(list || [])
       }) 

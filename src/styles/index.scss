@@ -148,6 +148,11 @@ div:focus {
   width: 100%;
   height:100%;
 }
+.banners{
+  width:1000px;
+  margin:0 auto;
+  padding:4px 0;
+}
 
 @media screen and (max-width: 768px){
   .banner-box{
@@ -155,5 +160,8 @@ div:focus {
   }
   .banner-box .wh_slide{
     height:auto;
+  }
+  .banners{
+    width:100%;
   }
 }

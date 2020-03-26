@@ -5,25 +5,28 @@
         <a href class="logo" title="首页">首页</a>
         <ul class="nav">
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">风景</a>
+            <a href="/bizhi/#/fengjing" class="nav-link" rel="nofollow">风景</a>
           </li>
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">美女</a>
+            <a href="/bizhi/#/meinv" class="nav-link" rel="nofollow">美女</a>
           </li>
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">游戏</a>
+            <a href="/bizhi/#/dongman" class="nav-link" rel="nofollow">动漫</a>
           </li>
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">汽车</a>
+            <a href="/bizhi/#/youxi" class="nav-link" rel="nofollow">游戏</a>
           </li>
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">美食</a>
+            <a href="/bizhi/#/qiche" class="nav-link" rel="nofollow">汽车</a>
           </li>
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">护眼</a>
+            <a href="/bizhi/#/meishi" class="nav-link" rel="nofollow">美食</a>
           </li>
           <li>
-            <a href="/new/" class="nav-link" rel="nofollow">非主流</a>
+            <a href="/bizhi/#/huyan" class="nav-link" rel="nofollow">护眼</a>
+          </li>
+          <li>
+            <a href="/bizhi/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a>
           </li>
           <!-- <li> <a href="javascript:;" class="nav-link">分类</a>
             <div class="nav-m clearfix tran"><a href="/4kfengjing/" title="4K风景图片">4K风景</a><a href="/4kmeinv/"
@@ -52,29 +55,17 @@
         </ul>
       </div>
     </div>
-    <!-- <el-menu
-      :default-active="activeIndex"
-      class="raiyi-banner"
-      mode="horizontal"
-      @select="handleSelect"
-      border="none"
-      background-color="rgba(255,255,255,.6)"
-    >
-      <el-menu-item index="1">风景</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">动漫</template>
-        <el-menu-item index="2-1">海贼王</el-menu-item>
-        <el-menu-item index="2-2">火影忍者</el-menu-item>
-        <el-menu-item index="2-3">死神</el-menu-item>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">游戏</template>
-        <el-menu-item index="3-1">Dota2</el-menu-item>
-        <el-menu-item index="3-2">英雄联盟</el-menu-item>
-        <el-menu-item index="3-3">王者荣耀</el-menu-item>
-      </el-submenu>
-      <el-menu-item index="4">美女</el-menu-item>
-    </el-menu>-->
+    <div class="maincate">
+      <a href="/bizhi">首页</a>
+      <a href="/bizhi/#/fengjing">风景</a>
+      <a href="/bizhi/#/meinv">美女</a>
+      <a href="/bizhi/#/dongman">动漫</a>
+      <a href="/bizhi/#/youxi">游戏</a>
+      <a href="/bizhi/#/qiche">汽车</a>
+      <a href="/bizhi/#/meishi">美食</a>
+      <a href="/bizhi/#/huyan">护眼</a>
+      <a href="/bizhi/#/feizhuliu">非主流</a>
+    </div>
   </div>
 </template>
 
@@ -83,7 +74,6 @@ export default {
   name: 'tabs',
   data(){
     return{
-      activeIndex:'1'
     }
   },
   props: {
@@ -176,52 +166,43 @@ a.logo:visited {
   margin-top: 14px;
 }
 
-// .nav li .nav-m {
-//   border: 2px #eeeff2 solid;
-//   background: #fff;
-//   width: 288px;
-//   position: absolute;
-//   left: 0;
-//   top: 100px;
-//   padding: 9px 0 9px 18px;
-//   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-//   opacity: 0;
-//   filter: alpha(opacity=0);
-// }
-
-// .nav li .more {
-//   width: 120px;
-//   padding: 9px 0 17px 18px;
-// }
-
-// .nav li:hover {
-//   overflow: visible;
-// }
-
-// .nav li:hover .nav-m {
-//   opacity: 1;
-//   filter: alpha(opacity=100);
-//   top: 54px;
-// }
-
-// .nav li .nav-m a {
-//   float: left;
-//   white-space: nowrap;
-//   width: 132px;
-//   line-height: 30px;
-// }
-
-// .nav li .more a {
-//   width: 100px;
-//   color: #333;
-// }
-
-// .nav li .nav-m a:hover {
-//   color: #63b504;
-// }
-
 .nav li.on,
 .nav li:hover {
   background: #333;
+}
+
+.maincate {
+  display: none;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-overflow-scrolling: touch;
+  text-align: justify;
+  background: #333;
+  padding: 0px 5px;
+  box-sizing: border-box;
+}
+.maincate a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.maincate::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .maincate {
+    display: block;
+  }
+  .header {
+    display: none;
+  }
 }
 </style>

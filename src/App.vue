@@ -4,8 +4,14 @@
   </div>
 </template>
 <script>
+import './assets/js/cnzz'
 export default {
-  name: 'App'
+  name: 'App',
+  mounted(){
+    
+
+
+}
 }
 </script>
 

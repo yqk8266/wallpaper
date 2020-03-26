@@ -1125,6 +1125,104 @@ body,
     text-align: center;
   }
 
+  .photo-txt {
+    padding: 10px 0 2px;
+    clear: both
+  }
+  .good_img{
+    width:318px;
+    height:318px;
+  }
+  .mobile_tkl{
+    display: none;
+  }
+
+  .maincate{
+    display:none;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-overflow-scrolling: touch;
+    text-align: justify;
+    background: #333;
+    padding: 0px 5px;
+    box-sizing: border-box;
+}
+.maincate a{ color: #fff; text-decoration: none; margin-right: 10px;}
+.maincate::-webkit-scrollbar{display: none;}
+
+
+
+
+
+
+  @media screen and (max-width: 768px){
+    .maincate{
+      display: block;
+    }
+    .header{
+      min-width: 0;
+      width:100%;
+      display: none;
+    }
+    /* .good_box{
+      display: none;
+    } */
+    .header .head,
+    .link,
+    .foot,
+    #main,
+    .lod,
+    .w,
+    .menu,
+    .wrap {
+      width: 100%;
+      margin: 0 auto
+    }
+
+    .photo .view{
+      width:100%;
+      box-sizing: border-box;
+    }
+    .photo .photo-pic{
+      width: 100%;
+    }
+    .photo .side{
+      width:100%;
+    }
+    .downpic{
+      width: 100%;
+      margin:15px auto;
+    }
+    .good_img{
+      width:100%;
+      height: auto;
+    }
+    .coupon-btn.get-coupon-btn{
+      display:none;
+    }
+    .get-coupon-btn .coupon-amount{
+      width: 100%;
+      text-align: left;
+      padding-left:3rem;
+    }
+    .get-coupon-btn .btn-name{
+      right: 5rem;
+    }
+    .mobile_tkl{
+      display: block;
+      width: 100%;
+      clear: both;
+      word-break: break-all;
+    }
+  }
+
 
 
     /* .downpic:after {
