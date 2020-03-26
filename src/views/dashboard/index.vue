@@ -18,7 +18,7 @@
               </a>
             </Slide>-->
             <Slide v-for="(item,index) in bannerList" :key="index">
-              <a href="/info.html" target="_blank">
+              <a :href="item.toUrl" target="_blank">
                 <img :src="item.resourceUrl" alt="加载错误" />
               </a>
             </Slide>

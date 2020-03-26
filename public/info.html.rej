@@ -1,0 +1,48 @@
+diff a/public/info.html b/public/info.html	(rejected hunks)
+@@ -64,38 +64,22 @@
+             </div>
+           </div>
+           <div class="side">
+-            <div class="downpic"><a href="/bizhi/1_big.jpg" download>下载原图</a></div>
++            <div class="downpic"><a href="/wallpaper/1_big.jpg" download>下载原图</a></div>
+             <div v-for="item in list" :key="item.id" class="good_box">
+-              <div class="infor">
+-                <p><span> <a @click="goTb(item)" href="javascript:;">{{item.goodsName}}</a> </span>
+-                </p>
+-              </div>
+-              <div>
+-                <a @click="goTb(item)" href="javascript:;"><img class="good_img" :src="item.goodsImageUrl"
+-                    border="0"></a></div>
+-              <div class="infor">
+-                <p><span>价格：<span style="color:#FF0036"><i class="price-symbol">¥</i>
+-                      <span class="price">{{item.price}}</span> </span></span>
+-                </p>
+-                <p class="mobile_tkl">
+-                  <span class="inviteCode">淘口令：{{item.couponPromoteUrl}}</span>
+-                </p>
+-                <input style="display: none;" id="inviteCode" class="inviteCode" type="text" />
+-                <div class="coupon-btn get-coupon-btn"
+-                  style="background-image: url(./img/TB16d.1ykPoK1RjSZKbXXX1IXXa-665-115.png_336x336.jpg_.webp)"
+-                  @click="goPage(item)">
+-                  <div class="coupon-info">
+-                    <div class="coupon-amount">{{item.couponPrice}}</div>
+-                  </div>
+-                  <div class="btn-name">立即领券</div>
+-                </div>
++
++
++              <div class="coupon-info">
++                <div class="coupon-amount">{{item.couponPrice}}</div>
+               </div>
++              <div class="btn-name">立即领券</div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
++  </div>
++  </div>
+ </body>
+ <script src="./infojs/vue.js"></script>
+ <script src="./infojs/axios.js"></script>
