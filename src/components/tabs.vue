@@ -5,28 +5,28 @@
         <a href class="logo" title="首页">首页</a>
         <ul class="nav">
           <li>
-            <a href="/wallpaper/#/fengjing" class="nav-link" rel="nofollow">风景</a>
+            <a href="/#/fengjing" class="nav-link" rel="nofollow">风景</a>
           </li>
           <li>
-            <a href="/wallpaper/#/meinv" class="nav-link" rel="nofollow">美女</a>
+            <a href="/#/meinv" class="nav-link" rel="nofollow">美女</a>
           </li>
           <li>
-            <a href="/wallpaper/#/dongman" class="nav-link" rel="nofollow">动漫</a>
+            <a href="/#/dongman" class="nav-link" rel="nofollow">动漫</a>
           </li>
           <li>
-            <a href="/wallpaper/#/youxi" class="nav-link" rel="nofollow">游戏</a>
+            <a href="/#/youxi" class="nav-link" rel="nofollow">游戏</a>
           </li>
           <li>
-            <a href="/wallpaper/#/qiche" class="nav-link" rel="nofollow">汽车</a>
+            <a href="/#/qiche" class="nav-link" rel="nofollow">汽车</a>
           </li>
           <li>
-            <a href="/wallpaper/#/meishi" class="nav-link" rel="nofollow">美食</a>
+            <a href="/#/meishi" class="nav-link" rel="nofollow">美食</a>
           </li>
           <li>
-            <a href="/wallpaper/#/huyan" class="nav-link" rel="nofollow">护眼</a>
+            <a href="/#/huyan" class="nav-link" rel="nofollow">护眼</a>
           </li>
           <li>
-            <a href="/wallpaper/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a>
+            <a href="/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a>
           </li>
           <!-- <li> <a href="javascript:;" class="nav-link">分类</a>
             <div class="nav-m clearfix tran"><a href="/4kfengjing/" title="4K风景图片">4K风景</a><a href="/4kmeinv/"
@@ -56,15 +56,15 @@
       </div>
     </div>
     <div class="maincate">
-      <a href="/wallpaper">首页</a>
-      <a href="/wallpaper/#/fengjing">风景</a>
-      <a href="/wallpaper/#/meinv">美女</a>
-      <a href="/wallpaper/#/dongman">动漫</a>
-      <a href="/wallpaper/#/youxi">游戏</a>
-      <a href="/wallpaper/#/qiche">汽车</a>
-      <a href="/wallpaper/#/meishi">美食</a>
-      <a href="/wallpaper/#/huyan">护眼</a>
-      <a href="/wallpaper/#/feizhuliu">非主流</a>
+      <a href>首页</a>
+      <a href="/#/fengjing">风景</a>
+      <a href="/#/meinv">美女</a>
+      <a href="/#/dongman">动漫</a>
+      <a href="/#/youxi">游戏</a>
+      <a href="/#/qiche">汽车</a>
+      <a href="/#/meishi">美食</a>
+      <a href="/#/huyan">护眼</a>
+      <a href="/#/feizhuliu">非主流</a>
     </div>
   </div>
 </template>

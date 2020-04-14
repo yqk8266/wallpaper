@@ -69,8 +69,9 @@ export default {
           this.$refs.waterfall.waterfallOver()
         }
         list.forEach(row=>{
-          row.src =  row.resourceUrl
-          row.href =  row.sourceUrl
+          row.src =  row.smallUrl
+          row.href =  '/'+row.sourceUrl
+          row.resolution = row.pixelWidth+'x'+row.pixelHeight
         })
         this.imgArr = this.imgArr.concat(list || [])
       }) 

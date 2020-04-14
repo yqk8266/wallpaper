@@ -7,14 +7,15 @@
       :maxCols="cols"
       :gap="5"
       @click="goInfo"
+      :alt="`加载失败`"
       @scrollReachBottom="getList"
     >
       <div slot="waterfall-head">
         <div class="banner-box">
           <Swiper v-if="bannerList.length > 0" interval="4000">
             <!-- <Slide>
-              <a href="/info.html" target="_blank">
-                <img src="/wallpaper/banner_2.jpg" alt="加载错误" />
+              <a href="/info_9345.html" target="_blank">
+                <img src="http://10.10.80.43:8080/api/v1/file/wallpaper/1/1.jpg" alt="加载错误" />
               </a>
             </Slide>-->
             <Slide v-for="(item,index) in bannerList" :key="index">
@@ -26,7 +27,7 @@
         </div>
         <div class="banners">
           <a href="javascript:;">
-            <img src="/wallpaper/wallpaper/ad.jpg" alt />
+            <img src="/wallpaper/ad.jpg" alt />
           </a>
         </div>
       </div>
@@ -35,7 +36,7 @@
       </div>
       <div slot="waterfall-over">没有啦！数据就这么多了！</div>
     </vue-waterfall-easy>
-
+    <!-- <img src="http://10.10.80.43:8080/api/v1/file/wallpaper/1/1.jpg" alt /> -->
     <loading :show="loading" />
   </div>
 </template>
@@ -244,7 +245,7 @@ export default {
     this.getList()
   },
   mounted(){
-   
+
   },
   methods:{
     getList(){
@@ -256,8 +257,9 @@ export default {
           this.$refs.waterfall.waterfallOver()
         }
         list.forEach(row=>{
-          row.src =  row.resourceUrl
-          row.href =  row.sourceUrl
+          row.src =  row.smallUrl
+          row.href = '/'+row.sourceUrl
+          row.resolution = row.pixelWidth+'x'+row.pixelHeight
           
         })
         this.imgArr = this.imgArr.concat(list || [])
