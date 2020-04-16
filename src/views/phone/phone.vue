@@ -62,15 +62,15 @@ export default {
   },
   methods:{
     getList(){
-      this.$axios.get(`/api/v1/wallpaper/listPage?categoryId=2&pageIndex=${this.page}&pageSize=18`).then(res=>{
+      this.$axios.get(`/api/v1/recommend/phone/list?page=${this.page}&size=18&device=2`).then(res=>{
         this.page++
         let list = res.data.data || []
         if(list.length==0){
           this.$refs.waterfall.waterfallOver()
         }
         list.forEach(row=>{
-          row.src =  row.smallUrl
-          row.href =  '/'+row.sourceUrl
+          row.src =  row.smallUrl 
+          row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
           row.resolution = row.pixelWidth+'x'+row.pixelHeight
         })
         this.imgArr = this.imgArr.concat(list || [])
@@ -84,13 +84,10 @@ export default {
     callback(){
 
     },
-    goInfo(event, { value }){
-      //event.preventDefault()
-      // this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
-      //    let url = '/'+res.data.data 
-      //    window.open(url)
-      // })
-    }
+    goInfo(event, { index, value }){
+      // //event.preventDefault()
+      console.log(index,value)
+    },
   }
 }
 </script>

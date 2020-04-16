@@ -22,6 +22,7 @@ module.exports = {
         // target: `http://127.0.0.1:${port}/mock`, // mock
         // target: `http://10.10.80.34:${port}`, // 测试环境
         // target: `http://10.10.80.43:8080`, // 陈亮
+        // target: `http://10.10.10.23:5080`, // 陈亮
         target: `http://wp.8yx.co/wp-api`, // 陈亮
         // target: `https://apply.data.raiyi.cn`, // 生产环境
         changeOrigin: true,

@@ -6,8 +6,8 @@
       ref="waterfall"
       :maxCols="cols"
       :gap="5"
-      @click="goInfo"
       :alt="`加载失败`"
+      @click="goInfo"
       @scrollReachBottom="getList"
     >
       <div slot="waterfall-head">
@@ -20,7 +20,7 @@
             </Slide>-->
             <Slide v-for="(item,index) in bannerList" :key="index">
               <a :href="item.toUrl" target="_blank">
-                <img :src="item.resourceUrl" alt="加载错误" />
+                <img v-lazy="item.resourceUrl" lazy="loading" alt="加载错误" />
               </a>
             </Slide>
           </Swiper>
@@ -45,6 +45,7 @@
 import loading from "@/views/Loading";
 import vueWaterfallEasy from 'vue-waterfall-easy'
 import { Swiper, Slide } from 'vue-swiper-component';
+import { isMobile } from '@/utils/index'
 
 export default {
   name:'dashboard',
@@ -61,195 +62,23 @@ export default {
       bannerList:[],
       loading:false,
       imgArr:[],
-      page:0,
-      imgsArr:[
-        {
-          src:
-            "/wallpaper/1_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/2_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/3_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/4_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/5_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/6_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/7_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/8_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/9_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/7_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/8_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/9_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/7_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/8_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/9_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/7_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/8_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/9_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/7_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/8_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-        {
-          src:
-            "/wallpaper/9_small.jpg",
-          href:
-            "/info.html",
-          title: "最近浴室新宠，日系神仙好物了解一下～",
-          resolution: "1920 x 1080"
-        },
-       
-      
-        
-       
-     
-      ],
+      page:0
     }
   },
   created(){
-    // this.getData() //测试用数据
     this.getBanner()
     this.getList()
   },
   mounted(){
-
+    if(isMobile()){
+      console.log(1)
+    }else{
+      console.log(2)
+    }
   },
   methods:{
     getList(){
-      this.$axios.get(`/api/v1/recommend/list?page=${this.page}&size=12`).then(res=>{
+      this.$axios.get(`/api/v1/recommend/list?page=${this.page}&size=18`).then(res=>{
         
         this.page++
         let list = res.data.data || []
@@ -257,7 +86,7 @@ export default {
           this.$refs.waterfall.waterfallOver()
         }
         list.forEach(row=>{
-          row.src =  row.smallUrl
+          row.src =  row.smallUrl || row.resourceUrl
           row.href = '/'+row.sourceUrl
           row.resolution = row.pixelWidth+'x'+row.pixelHeight
           
@@ -265,21 +94,18 @@ export default {
         this.imgArr = this.imgArr.concat(list || [])
       }) 
     },
+    goInfo(event, { value }){
+      //event.preventDefault()
+      // this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
+      //    let url = '/'+res.data.data 
+      //    window.open(url)
+      // })
+    },
     getBanner(){
       this.$axios.get('/api/v1/banner/listByType?type=wallpaper').then(res=>{
         this.bannerList =res.data.data || []
       })
-    },
-    callback(){
-
-    },
-    goInfo(event, { index, value }){
-      // event.preventDefault()
-      console.log(index,value)
-    },
-    getData(){
-      this.imgArr = this.imgArr.concat(this.imgsArr || [])
-    },
+    }
   }
 }
 </script>

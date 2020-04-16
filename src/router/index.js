@@ -91,6 +91,15 @@ const routes = [
           title: '非主流',
           affix: true
         }
+      },
+      {
+        path: 'phone',
+        name: 'phone',
+        component: () => import('@/views/phone/phone'),
+        meta: {
+          title: '手机',
+          affix: true
+        }
       }
     ]
   },

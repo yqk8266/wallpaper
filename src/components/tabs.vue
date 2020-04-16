@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <div class="head">
-        <a href class="logo" title="首页">首页</a>
+        <a href="/" class="logo" title="首页">首页</a>
         <ul class="nav">
           <li>
             <a href="/#/fengjing" class="nav-link" rel="nofollow">风景</a>
@@ -27,6 +27,9 @@
           </li>
           <li>
             <a href="/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a>
+          </li>
+          <li>
+            <a href="/#/phone" class="nav-link" rel="nofollow">手机壁纸</a>
           </li>
           <!-- <li> <a href="javascript:;" class="nav-link">分类</a>
             <div class="nav-m clearfix tran"><a href="/4kfengjing/" title="4K风景图片">4K风景</a><a href="/4kmeinv/"
@@ -56,7 +59,7 @@
       </div>
     </div>
     <div class="maincate">
-      <a href>首页</a>
+      <a href="/">首页</a>
       <a href="/#/fengjing">风景</a>
       <a href="/#/meinv">美女</a>
       <a href="/#/dongman">动漫</a>
@@ -65,6 +68,7 @@
       <a href="/#/meishi">美食</a>
       <a href="/#/huyan">护眼</a>
       <a href="/#/feizhuliu">非主流</a>
+      <a href="/#/phone">手机壁纸</a>
     </div>
   </div>
 </template>

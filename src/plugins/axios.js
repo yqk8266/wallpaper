@@ -7,7 +7,6 @@ import axios from "axios";
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-console.log(process.env.VUE_APP_BASE_API)
 let config = {
   baseURL: process.env.VUE_APP_BASE_API || "",
   // timeout: 60 * 1000, // Timeout
