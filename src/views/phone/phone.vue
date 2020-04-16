@@ -1,5 +1,6 @@
 <template>
   <div class="waterfall-container">
+    <m-tabs class="top-tabs" @getPage="getPage" />
     <vue-waterfall-easy
       :imgsArr="imgArr"
       :imgWidth="330"
@@ -36,11 +37,13 @@
 <script>
 import vueWaterfallEasy from 'vue-waterfall-easy'
 import { Swiper, Slide } from 'vue-swiper-component';
+import mTabs from '@/components/mtab.vue'
 
 export default {
   name:'fengjing',
    components: {
     vueWaterfallEasy,
+    mTabs,
     Swiper,
     Slide
   },
@@ -50,7 +53,8 @@ export default {
       cols:3,
       bannerList:[],
       imgArr:[],
-      page:0
+      page:0,
+      id:'',
     }
   },
   created(){
@@ -61,8 +65,41 @@ export default {
    
   },
   methods:{
+    getPage(id){
+      this.id = id
+     this.page = 0
+      this.imgArr = []
+      this.$axios.get(`api/v1/wallpaper/listPage?pageIndex=${this.page}&pageSize=18&device=2&categoryId=${id}`).then(res=>{
+         this.page++
+       let list = res.data.data || []
+        if(list.length==0){
+          this.$refs.waterfall.waterfallOver()
+        }
+        list.forEach(row=>{
+          row.src =  row.smallUrl 
+          row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
+          row.resolution = row.pixelWidth+'x'+row.pixelHeight
+        })
+        this.imgArr = this.imgArr.concat(list || [])
+     })
+    },
     getList(){
-      this.$axios.get(`/api/v1/recommend/phone/list?page=${this.page}&size=18&device=2`).then(res=>{
+      if(this.id){
+        this.$axios.get(`api/v1/wallpaper/listPage?pageIndex=${this.page}&pageSize=18&device=2&categoryId=${this.id}`).then(res=>{
+          this.page++
+          let list = res.data.data || []
+            if(list.length==0){
+              this.$refs.waterfall.waterfallOver()
+            }
+            list.forEach(row=>{
+              row.src =  row.smallUrl 
+              row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
+              row.resolution = row.pixelWidth+'x'+row.pixelHeight
+            })
+            this.imgArr = this.imgArr.concat(list || [])
+        })
+      } else {
+         this.$axios.get(`/api/v1/recommend/phone/list?page=${this.page}&size=18&device=2`).then(res=>{
         this.page++
         let list = res.data.data || []
         if(list.length==0){
@@ -75,6 +112,8 @@ export default {
         })
         this.imgArr = this.imgArr.concat(list || [])
       }) 
+      }
+     
     },
     getBanner(){
       this.$axios.get('/api/v1/banner/listByType?type=wallpaper').then(res=>{

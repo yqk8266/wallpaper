@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Mobile from '../views/Mobile.vue'
 
 Vue.use(VueRouter)
 
@@ -91,10 +92,18 @@ const routes = [
           title: '非主流',
           affix: true
         }
-      },
+      }
+    ]
+  },
+  {
+    path: '/phone',
+    component: Mobile,
+    name: 'phone',
+    redirect: '/phone/category',
+    children: [
       {
-        path: 'phone',
-        name: 'phone',
+        path: 'category',
+        name: 'category',
         component: () => import('@/views/phone/phone'),
         meta: {
           title: '手机',
