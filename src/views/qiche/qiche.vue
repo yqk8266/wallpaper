@@ -84,13 +84,13 @@ export default {
     callback(){
 
     },
-   goInfo(event, { value }){
-      //event.preventDefault()
-      // this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
-      //    let url = '/'+res.data.data 
-      //    window.open(url)
-      // })
-    },
+    goInfo(event, { value }){
+      event.preventDefault()
+      this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
+         let url =window.location.origin+'/'+ res.data.data ;
+         window.open(url)
+      })
+    }
   }
 }
 </script>
