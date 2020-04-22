@@ -97,7 +97,7 @@ export default {
     goInfo(event, { value }){
       event.preventDefault()
       this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
-         let url =window.location.origin+'/'+ res.data.data ;
+         let url =window.location.origin+'/wp-api/'+ res.data.data ;
          window.open(url)
       })
     },
