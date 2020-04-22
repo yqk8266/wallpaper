@@ -56,11 +56,11 @@
           <li><a href="/4kyouxi/" class="nav-link" rel="nofollow">4K游戏</a></li>
           <li><a href="/dashang.html" class="nav-link" rel="nofollow" style="color:#FFA800; target=_blank">打赏1元</a></li>-->
         </ul>
-        <div class="login-box">
+        <!-- <div class="login-box">
           <div class="no-user" @click="showLogin">
             <img src="../assets/nouser.png" alt />
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="maincate">
