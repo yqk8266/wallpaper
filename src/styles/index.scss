@@ -169,3 +169,37 @@ div:focus {
     width:100%;
   }
 }
+.dialog-box{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,.5);
+  z-index: 2000;
+}
+.dialog-form{
+  position: relative;
+    margin: 0 auto;
+    margin-top:10%;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    box-sizing: border-box;
+    width: 420px;
+    padding: 15px 30px;
+}
+.login-title{
+  text-align: center;
+  padding:25px 0;
+}
+.delete-icon{
+  position: absolute;
+  right:16px;
+  top:12px;
+  font-size:16px;
+  cursor: pointer;
+}
+.delete-icon:hover{
+  color:#f60;
+}

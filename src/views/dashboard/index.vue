@@ -95,11 +95,12 @@ export default {
       }) 
     },
     goInfo(event, { value }){
-      //event.preventDefault()
-      // this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
-      //    let url = '/'+res.data.data 
-      //    window.open(url)
-      // })
+      event.preventDefault()
+      this.$axios.get(`/api/v1/wallpaper/getStaticPageById?id=${value.id}`).then(res=>{
+         let url ='http://10.10.10.23:5080/' + res.data.data ;
+         console.log(url)
+         window.open(url)
+      })
     },
     getBanner(){
       this.$axios.get('/api/v1/banner/listByType?type=wallpaper').then(res=>{

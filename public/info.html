@@ -22,7 +22,7 @@
   </noscript>
   <div class="info_main">
     <div class="maincate">
-      <a href="/wallpaper">首页</a>
+      <a href="/">首页</a>
       <a href="/#/fengjing">风景</a>
       <a href="/#/meinv">美女</a>
       <a href="/#/dongman">动漫</a>
@@ -36,7 +36,7 @@
 
     <div class="header">
       <div class="head">
-        <a href="/wallpaper" class="logo" title="4k壁纸">首页</a>
+        <a href="/" class="logo" title="4k壁纸">首页</a>
         <ul class="nav">
           <li><a href="/#/fengjing" class="nav-link" rel="nofollow">风景</a></li>
           <li><a href="/#/meinv" class="nav-link" rel="nofollow">美女</a></li>
@@ -155,7 +155,7 @@
         if (this.isWx()) {
           this.copy(row.couponPromoteUrl)
         } else {
-          window.location.href = row.couponPromoteUrl || row.tbkUrl
+          window.location.href = row.couponUrl
         }
       },
       isWx() {

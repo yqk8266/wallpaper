@@ -56,6 +56,11 @@
           <li><a href="/4kyouxi/" class="nav-link" rel="nofollow">4K游戏</a></li>
           <li><a href="/dashang.html" class="nav-link" rel="nofollow" style="color:#FFA800; target=_blank">打赏1元</a></li>-->
         </ul>
+        <div class="login-box">
+          <div class="no-user" @click="showLogin">
+            <img src="../assets/nouser.png" alt />
+          </div>
+        </div>
       </div>
     </div>
     <div class="maincate">
@@ -70,6 +75,52 @@
       <a href="/#/feizhuliu">非主流</a>
       <a href="/#/phone">手机壁纸</a>
     </div>
+    <!-- <el-dialog title="登录" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+      <span>这是一段信息</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>-->
+    <div class="dialog-box" v-if="dialogVisible">
+      <div class="dialog-form">
+        <i class="el-icon-close delete-icon" @click="dialogVisible=false"></i>
+        <div class="login-title">用户登录</div>
+        <el-form
+          :model="loginForm"
+          status-icon
+          :rules="rules"
+          ref="loginForm"
+          label-width="60px"
+          class="demo-loginForm"
+        >
+          <el-form-item label label-width="0" prop="username">
+            <el-input
+              type="password"
+              v-model="loginForm.username"
+              placeholder="手机/邮箱"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label label-width="0" prop="password">
+            <el-input
+              type="password"
+              v-model="loginForm.password"
+              placeholder="密码"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+
+          <el-form-item label-width="0" style="margin-bottom:0px;">
+            <el-button style="width:100%" type="primary">登录/注册</el-button>
+          </el-form-item>
+          <el-form-item label-width="0">
+            <el-button type="text">忘记密码？</el-button>
+            <!-- <el-button type="text">立即注册</el-button> -->
+          </el-form-item>
+        </el-form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,6 +129,19 @@ export default {
   name: 'tabs',
   data(){
     return{
+      dialogVisible:false,
+      loginForm:{
+        username:'',
+        password:''
+      },
+      rules:{
+         username: [
+            { required: true, message: '请输入用户名', trigger: 'blur' }
+          ],
+         password: [
+            { required: true, message: '请输入密码', trigger: 'blur' }
+          ],
+      }
     }
   },
   props: {
@@ -87,6 +151,14 @@ export default {
     handleSelect(key,keyPath){
       console.log(key, keyPath);
       this.$message.success('你点了该路由：'+key)
+    },
+    showLogin(){
+      this.dialogVisible = true
+      this.loginForm.username = ''
+      this.loginForm.password = ''
+    },
+    handleClose(){
+      this.dialogVisible = false
     }
   }
 }
@@ -208,5 +280,27 @@ a.logo:visited {
   .header {
     display: none;
   }
+}
+.login-box {
+  float: right;
+  height: 54px;
+  line-height: 54px;
+  color: #fff;
+  padding: 0 5px;
+}
+.no-user {
+  // line-height: 54px;
+  margin-top: 13px;
+}
+.no-user img {
+  width: 30px;
+  height: 30px;
+  background: #aaa;
+  padding: 6px;
+  border-radius: 100%;
+}
+.no-user:hover img {
+  background: #e1e3e5;
+  cursor: pointer;
 }
 </style>

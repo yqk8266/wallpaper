@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import './plugins/axios'
 import App from './App.vue'
-// import ElementUI from 'element-ui';
-// import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/index.scss' // global css
 import './registerServiceWorker'
 import router from './router'
@@ -15,7 +15,7 @@ Vue.use(VueLazyload, {
   loading: require('./assets/loading.jpg'),
   attempt: 1
 })
-// Vue.use(ElementUI, { size: 'mini' });
+Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
