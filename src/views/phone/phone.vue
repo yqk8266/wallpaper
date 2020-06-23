@@ -1,96 +1,89 @@
 <template>
-  <div class="waterfall-container">
-    <m-tabs class="top-tabs" @getPage="getPage" />
-    <vue-waterfall-easy
-      :imgsArr="imgArr"
-      :imgWidth="330"
-      ref="waterfall"
-      :maxCols="cols"
-      :gap="5"
-      @click="goInfo"
-      @scrollReachBottom="getList"
-    >
-      <!-- <div slot="waterfall-head">
-        <div class="banner-box">
-          <Swiper v-if="bannerList.length > 0" interval="4000">
-            <Slide>
-              <a href="/info.html" target="_blank">
-                <img src="/wallpaper/banner_2.jpg" alt="加载错误" />
-              </a>
-            </Slide>
-            <Slide v-for="(item,index) in bannerList" :key="index">
-              <a href="/info.html" target="_blank">
-                <img src="/wallpaper/banner_1.jpg" alt="加载错误" />
-              </a>
-            </Slide>
-          </Swiper>
-        </div>
-      </div>-->
-      <div class="img-info" slot-scope="props">
-        <span class="some-info">{{props.value.resolution}}</span>
-      </div>
-      <div slot="waterfall-over">没有啦！数据就这么多了！</div>
-    </vue-waterfall-easy>
+  <div>
+    <div class="fixed-header">
+      <ul class="tab-ul">
+        <li
+          class="tab-li"
+          v-for="(item,index) in bannerList"
+          :key="index"
+          :class="{'active':activeTab===index}"
+          @click="switchTab(item,index)"
+        >
+          <div class="tab-div"></div>
+          <span>{{item.name}}</span>
+        </li>
+      </ul>
+    </div>
+    <div style="position:relative;width:100%;margin-top:6rem;">
+      <waterfall :col="cols" :data="imgArr" @loadmore="getList">
+        <template>
+          <div
+            class="cell-item"
+            v-for="(item,index) in imgArr"
+            :key="index"
+            @click="goDetail(item)"
+          >
+            <img v-lazy="item.src" alt="加载错误" />
+            <div class="cell-item-body">
+              <div class="cell-item-desc">{{item.title}}</div>
+              <!-- <div class="cell-item-footer">
+                <div class="cell-item-user-name">{{item.uploadUserNickName}}</div>
+              </div>-->
+            </div>
+          </div>
+        </template>
+      </waterfall>
+    </div>
   </div>
 </template>
 
 <script>
-import vueWaterfallEasy from 'vue-waterfall-easy'
-import { Swiper, Slide } from 'vue-swiper-component';
-import mTabs from '@/components/mtab.vue'
 
 export default {
   name:'fengjing',
-   components: {
-    vueWaterfallEasy,
-    mTabs,
-    Swiper,
-    Slide
-  },
   data(){
     return{
       data:[],
-      cols:3,
+      cols:2,
       bannerList:[],
       imgArr:[],
       page:0,
-      id:'',
+      activeTab:0,
+      id:''
     }
   },
   created(){
-    // this.getBanner()
+    this.getBanner()
     this.getList()
   },
   mounted(){
    
   },
   methods:{
-    getPage(id){
-      this.id = id
-     this.page = 0
-      this.imgArr = []
-      this.$axios.get(`api/v1/wallpaper/listPage?pageIndex=${this.page}&pageSize=18&device=2&categoryId=${id}`).then(res=>{
-         this.page++
-       let list = res.data.data || []
-        if(list.length==0){
-          this.$refs.waterfall.waterfallOver()
+    goDetail(row){
+      console.log(row)
+      this.$router.push({
+        name:'detail',
+        query:{
+          id:row.id,
+          categoryId:row.categoryId
         }
-        list.forEach(row=>{
-          row.src =  row.smallUrl 
-          row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
-          row.resolution = row.pixelWidth+'x'+row.pixelHeight
-        })
-        this.imgArr = this.imgArr.concat(list || [])
-     })
+      })
     },
+    switchTab(row,index){
+      this.page=0
+      this.activeTab  = index
+      this.id = row.id
+      this.imgArr = []
+      this.getList()
+    },
+    
     getList(){
       if(this.id){
         this.$axios.get(`api/v1/wallpaper/listPage?pageIndex=${this.page}&pageSize=18&device=2&categoryId=${this.id}`).then(res=>{
           this.page++
           let list = res.data.data || []
-            if(list.length==0){
-              this.$refs.waterfall.waterfallOver()
-            }
+          
             list.forEach(row=>{
               row.src =  row.smallUrl 
               row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
@@ -102,9 +95,6 @@ export default {
          this.$axios.get(`/api/v1/recommend/phone/list?page=${this.page}&size=18&device=2`).then(res=>{
         this.page++
         let list = res.data.data || []
-        if(list.length==0){
-          this.$refs.waterfall.waterfallOver()
-        }
         list.forEach(row=>{
           row.src =  row.smallUrl 
           row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
@@ -116,12 +106,19 @@ export default {
      
     },
     getBanner(){
-      this.$axios.get('/api/v1/banner/listByType?type=wallpaper').then(res=>{
-        this.bannerList =res.data.data || []
+      this.bannerList = []
+      this.$axios.get('/api/v1/categories/app/listAll').then(res=>{
+        let list = res.data.data||[]
+        let sonList = []
+        list.forEach(row=>{
+          sonList = sonList.concat(row.categoryList||[])
+        })
+        sonList.unshift({
+          id:'',
+          name:'全部'
+        })
+        this.bannerList = sonList
       })
-    },
-    callback(){
-
     },
     goInfo(event, { index, value }){
       // //event.preventDefault()

@@ -1,6 +1,5 @@
 <template>
   <div class="main-body">
-    <!-- <m-tabs class="top-tabs" /> -->
     <div class="raiyi-container">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive" :key="key" />
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 
 export default {
   name: 'Mobile',

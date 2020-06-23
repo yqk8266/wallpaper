@@ -61,6 +61,9 @@
             <img src="../assets/nouser.png" alt />
           </div>
         </div>-->
+        <div class="login-box">
+          <a href="/#/upload">上传壁纸</a>
+        </div>
       </div>
     </div>
     <div class="maincate">
@@ -74,6 +77,7 @@
       <a href="/#/huyan">护眼</a>
       <a href="/#/feizhuliu">非主流</a>
       <a href="/#/phone">手机壁纸</a>
+      <a href="/#/upload">上传壁纸</a>
     </div>
     <!-- <el-dialog title="登录" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
       <span>这是一段信息</span>
@@ -148,6 +152,9 @@ export default {
     msg: String
   },
   methods:{
+    goUpload(){
+      this.$router.push('/upload')
+    },
     handleSelect(key,keyPath){
       console.log(key, keyPath);
       this.$message.success('你点了该路由：'+key)

@@ -15,6 +15,11 @@
     #cnzz_stat_icon_1278815010 {
       display: none;
     }
+
+    .qq_box a {
+      display: block;
+      margin: 10px 0;
+    }
   </style>
 </head>
 
@@ -23,14 +28,34 @@
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
       Please enable it to continue.</strong>
   </noscript>
+
   <div id="app"></div>
+  <div class="qq_box" id="qqBox" style="position:fixed;right:30px;bottom:30px;">
+    <a target="_blank"
+      href="https://shang.qq.com/wpa/qunwpa?idkey=f16ca8b201f780542c04673a840df8e33f5bfdd0fac65a627397d1a3f8e9f804"><img
+        border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="壁纸学院初中部" title="壁纸学院初中部"></a>
+    <a target="_blank"
+      href="https://shang.qq.com/wpa/qunwpa?idkey=8a1c60fd36cedfc092bb1a9a9e2639809f1be397752186da8a40a9f78921c7d5"><img
+        border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="壁纸学院高中部" title="壁纸学院高中部"></a>
+    <a target="_blank"
+      href="https://shang.qq.com/wpa/qunwpa?idkey=0355d9210526f9cb03cb239cf465320ce9fb4c26fa6923878a0b6d51f9d54831"><img
+        border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="壁纸私立大学部" title="壁纸私立大学部"></a>
 
   </div>
+
   <!-- built files will be auto injected -->
 
 
   <script
     type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278815010'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1278815010%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+  <script>
+    const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+    if (flag) {
+      document.getElementById('qqBox').style.display = 'none'
+    } else {
+      document.getElementById('qqBox').style.display = 'block'
+    }
+  </script>
 </body>
 
 </html>

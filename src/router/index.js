@@ -92,6 +92,15 @@ const routes = [
           title: '非主流',
           affix: true
         }
+      },
+      {
+        path: 'upload',
+        name: 'upload',
+        component: () => import('@/views/upload/Upload'),
+        meta: {
+          title: '上传壁纸',
+          affix: true
+        }
       }
     ]
   },
@@ -107,7 +116,19 @@ const routes = [
         component: () => import('@/views/phone/phone'),
         meta: {
           title: '手机',
-          affix: true
+          affix: true,
+          keepAlive: true,
+          isMobile: true
+        }
+      },
+      {
+        path: 'category/detail',
+        name: 'detail',
+        component: () => import('@/views/phone/detail'),
+        meta: {
+          title: '壁纸详情',
+          affix: true,
+          isMobile: true
         }
       }
     ]
