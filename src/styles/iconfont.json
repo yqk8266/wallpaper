@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "11037980",
+      "name": "电商",
+      "font_class": "dianshang",
+      "unicode": "e744",
+      "unicode_decimal": 59204
+    },
+    {
       "icon_id": "7221159",
       "name": "删  除",
       "font_class": "shanchu",

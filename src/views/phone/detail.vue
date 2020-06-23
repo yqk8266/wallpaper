@@ -34,7 +34,7 @@
                   />
                 </a>
               </div>
-              <span class="iconfont icon-e-down" @click="openUrl"></span>
+              <span class="iconfont icon-dianshang" @click="openUrl"></span>
               <span class="iconfont icon-shenglve" @click="showBox=!showBox"></span>
             </div>
           </div>
@@ -275,10 +275,12 @@ export default {
   position: relative;
   display: flex;
   .good-img-box {
-    width: 9rem;
-    height: 9rem;
+    width: 7rem;
+    height: 7rem;
+    padding: 5px;
     img {
       width: 100%;
+      border-radius: 50%;
     }
   }
   .good-info-box {
@@ -290,8 +292,8 @@ export default {
       text-align: center;
       border: 1px dashed #e5004f;
       border-radius: 4px;
-      height: 4rem;
-      line-height: 4rem;
+      height: 3rem;
+      line-height: 3rem;
       margin: 0.5rem 6rem;
       color: #e5004f;
       transform: rotate(29deg);
@@ -299,7 +301,7 @@ export default {
     .price-box {
       position: absolute;
       box-sizing: border-box;
-      bottom: 0;
+      bottom: 0.55rem;
       left: 0;
       right: 15px;
       display: flex;

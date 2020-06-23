@@ -5,7 +5,7 @@
 const port = 8082 // dev port
 
 module.exports = {
-  publicPath: '/wallpaper',
+  publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: true,
@@ -21,7 +21,7 @@ module.exports = {
       [process.env.VUE_APP_BASE_API]: {
         // target: `http://127.0.0.1:${port}/mock`, // mock
         target: `http://wx.dsger.cn`, // 测试环境
-        // target: `http://10.10.10.23:5080`, // 金国峰
+        // target: `http://10.10.10.14:5080`, // 金国峰
         // target: `http://wp.8yx.co/wp-api`, // 生产
         changeOrigin: true,
         pathRewrite: {
