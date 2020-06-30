@@ -13,11 +13,6 @@
       <div slot="waterfall-head">
         <div class="banner-box">
           <Swiper v-if="bannerList.length > 0" interval="4000">
-            <!-- <Slide>
-              <a href="/info_9345.html" target="_blank">
-                <img src="http://10.10.80.43:8080/api/v1/file/wallpaper/1/1.jpg" alt="加载错误" />
-              </a>
-            </Slide>-->
             <Slide v-for="(item,index) in bannerList" :key="index">
               <a :href="item.toUrl" target="_blank">
                 <img v-lazy="item.resourceUrl" lazy="loading" alt="加载错误" />

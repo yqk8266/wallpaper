@@ -9,10 +9,19 @@
         @slideChangeTransitionEnd="getNum"
         ref="swiper"
       >
-        <swiper-slide v-for="(item,index) in imgList" :key="index">
+        <swiper-slide
+          v-for="(item,index) in imgList"
+          :key="index"
+          :class="{'isFullScreen':isFullScreen}"
+        >
           <div class="img-box" :style="{'height': imgHeight}">
             <span @click="goBack" class="iconfont icon-shanchu"></span>
-            <img v-lazy="item.resourceUrl || item.largeUrl" lazy="loading" alt="加载错误" />
+            <img
+              @click="swicthFullScreen"
+              v-lazy="item.resourceUrl || item.largeUrl"
+              lazy="loading"
+              alt="加载错误"
+            />
           </div>
           <div class="user-box">
             <div>上传者：{{item.uploadUserNickName||'李磊'}}</div>
@@ -73,6 +82,7 @@ export default {
   data(){
     return {
       isLoadOver:false,
+      isFullScreen:false,
       imgList:[],
       isOpen:false,
       wallpaperId:'',
@@ -97,7 +107,6 @@ export default {
   },
   methods:{
     goPage(row){
-      console.log(row)
        let endDate = new Date(row.couponEndDate).getTime()
         let nowTime = new Date().getTime()
         if (endDate - nowTime > 0) {
@@ -109,61 +118,73 @@ export default {
     openUrl(){
       window.open(this.downloadUrl)
     },
+    swicthFullScreen(){
+      this.isFullScreen = !this.isFullScreen
+      if(this.isFullScreen){
+        this.imgHeight =  document.body.clientHeight*1+'px'
+      }else{
+        this.imgHeight =  document.body.clientHeight*0.75+'px'
+      }
+    },
     goBack(){
-      this.$router.go(-1)
+      this.$router.push({
+        name:'category'
+      })
     },
     getNum(){
       let that = this
       let data = this.$refs.swiper.$swiper.activeIndex
-     
+      let dataObj = this.imgList[data]
+      if (this.$wechat && this.$wechat.isWechat()) {
+        this.$wechat.share({  
+              title:dataObj.title,
+              desc: 'wp.8yx.co,找寻属于你自己的精选壁纸~',  
+              img: dataObj.smallUrl|| dataObj.sourceUrl
+        },window.location.href) 
+			}
       if(data==this.oldIndex){
+        this.$message.info('暂无数据')
         return 
       }
-
-       if (this.$wechat && this.$wechat.isWechat()) {
-         let dataObj = that.imgList[data]
-            this.$wechat.share({  
-                  title:dataObj.title,
-                  desc: 'wp.8yx.co,找寻属于你自己的精选壁纸~',  
-                  img: dataObj.smallUrl|| dataObj.sourceUrl
-            },window.location.href) 
-					} 
-
-
-
-
-
-
-
-
+      if (this.$wechat && this.$wechat.isWechat()) {
+      let dataObj = that.imgList[data]
+        this.$wechat.share({  
+              title:dataObj.title,
+              desc: 'wp.8yx.co,找寻属于你自己的精选壁纸~',  
+              img: dataObj.smallUrl|| dataObj.sourceUrl
+        },window.location.href) 
+      } 
       if(this.isLoadOver){
         that.getGood()
         return
       }
+      if(this.imgList.length-data<5){
+        this.$axios.get(`/api/v1/wallpaper/listFrontAndBehind?wallpaperId=${this.imgList[this.imgList.length-1].id}&categoryId=${this.categoryId}&size=20`).then(res=>{
+          let list = res.data.data||[]
+          if(list.length>0){
+            list.forEach((row,idx)=>{
+              if(idx>0){
+              this.imgList.push(row)
 
+              }
+            })
+            that.getGood()
+            if(list.length<20){
+              this.isLoadOver = true
+            }
+          }else{
+            this.isLoadOver = true
+          }
       
-      if(this.imgList.length>6&&this.imgList.length-data<5){
-        // let list = this.imgList
-         this.$axios.get(`/api/v1/wallpaper/listFrontAndBehind?wallpaperId=${this.imgList[this.imgList.length-1].id}&categoryId=${this.categoryId}&size=7`).then(res=>{
-           let list = res.data.data||[]
-           if(list.length>0){
-             list.forEach(row=>{
-               this.imgList.push(row)
-             })
-              that.getGood()
-           }else{
-             this.isLoadOver = true
-           }
-        
-         this.oldIndex = data
-       })
+          this.oldIndex = data
+        })
       }else{
         this.oldIndex = data
         this.getGood()
       }
     },
     getList(){
-       this.$axios.get(`/api/v1/wallpaper/listFrontAndBehind?wallpaperId=${this.wallpaperId}&categoryId=${this.categoryId}&size=7`).then(res=>{
+       this.$axios.get(`/api/v1/wallpaper/listFrontAndBehind?wallpaperId=${this.wallpaperId}&categoryId=${this.categoryId}&size=20`).then(res=>{
          this.imgList = res.data.data||[]
           let dataObj = this.imgList[0]
           if (this.$wechat && this.$wechat.isWechat()) {
@@ -198,7 +219,6 @@ export default {
   position: relative;
   .img-box {
     position: relative;
-    height: 55%;
     text-align: center;
     span {
       position: absolute;
@@ -208,11 +228,20 @@ export default {
       font-size: 1.8rem;
     }
     img {
-      width: 80%;
+      background-size: contain;
       height: 100%;
-      margin: 0 auto;
+      width: auto;
     }
   }
+
+  .isFullScreen {
+    .img-box {
+      .icon-shanchu {
+        display: none;
+      }
+    }
+  }
+
   img {
     width: 100%;
     height: 100%;

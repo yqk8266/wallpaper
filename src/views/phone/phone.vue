@@ -14,9 +14,9 @@
         </li>
       </ul>
     </div>
-    <div style="position:relative;width:100%;margin-top:6rem;">
-      <waterfall :col="cols" :data="imgArr" @loadmore="getList">
-        <template>
+    <div style="position:relative;width:100%;margin-top:6rem;-webkit-overflow-scrolling: touch;">
+      <mescroll-vue ref="mescroll" :up="mescrollDown">
+        <div class="cell-boxes">
           <div
             class="cell-item"
             v-for="(item,index) in imgArr"
@@ -26,25 +26,35 @@
             <img v-lazy="item.src" alt="加载错误" />
             <div class="cell-item-body">
               <div class="cell-item-desc">{{item.title}}</div>
-              <!-- <div class="cell-item-footer">
-                <div class="cell-item-user-name">{{item.uploadUserNickName}}</div>
-              </div>-->
             </div>
           </div>
-        </template>
-      </waterfall>
+        </div>
+      </mescroll-vue>
     </div>
   </div>
 </template>
 
 <script>
+import MescrollVue from 'mescroll.js/mescroll.vue'
+ import totop from './mescroll-totop.png'
 
 export default {
   name:'fengjing',
+  components: {
+    MescrollVue // 注册mescroll组件
+  },
   data(){
     return{
       data:[],
-      cols:2,
+      mescrollDown:{
+        callback:this.getList,
+        toTop: {
+					//回到顶部按钮
+					src: totop, //图片路径,默认null,支持网络图
+					offset: 900 //列表滚动1000px才显示回到顶部按钮
+        },
+        htmlNodata: '<p class="upwarp-nodata">暂无更多数据哦~</p>',
+      },
       bannerList:[],
       imgArr:[],
       page:0,
@@ -56,12 +66,8 @@ export default {
     this.getBanner()
     this.getList()
   },
-  mounted(){
-   
-  },
   methods:{
     goDetail(row){
-      console.log(row)
       this.$router.push({
         name:'detail',
         query:{
@@ -78,10 +84,11 @@ export default {
       this.getList()
     },
     
-    getList(){
-      if(this.id){
-        this.$axios.get(`api/v1/wallpaper/listPage?pageIndex=${this.page}&pageSize=18&device=2&categoryId=${this.id}`).then(res=>{
-          this.page++
+    getList(page,mescroll){
+      let that = this
+      if(that.id){
+        that.$axios.get(`api/v1/wallpaper/listPage?pageIndex=${that.page}&pageSize=18&device=2&categoryId=${that.id}`).then(res=>{
+          that.page++
           let list = res.data.data || []
           
             list.forEach(row=>{
@@ -89,18 +96,24 @@ export default {
               row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
               row.resolution = row.pixelWidth+'x'+row.pixelHeight
             })
-            this.imgArr = this.imgArr.concat(list || [])
+            that.imgArr = that.imgArr.concat(list || [])
+            that.$nextTick(() => {
+              mescroll?mescroll.endSuccess(list.length):''
+            })
         })
       } else {
-         this.$axios.get(`/api/v1/recommend/phone/list?page=${this.page}&size=18&device=2`).then(res=>{
-        this.page++
+        that.$axios.get(`/api/v1/recommend/phone/list?page=${that.page}&size=18&device=2`).then(res=>{
+        that.page++
         let list = res.data.data || []
         list.forEach(row=>{
           row.src =  row.smallUrl 
           row.href =  row.largeUrl || row.largeUrl || row.resourceUrl
           row.resolution = row.pixelWidth+'x'+row.pixelHeight
         })
-        this.imgArr = this.imgArr.concat(list || [])
+        that.imgArr = that.imgArr.concat(list || [])
+        that.$nextTick(() => {
+          mescroll?mescroll.endSuccess(list.length):''
+        })
       }) 
       }
      
@@ -119,13 +132,15 @@ export default {
         })
         this.bannerList = sonList
       })
-    },
-    goInfo(event, { index, value }){
-      // //event.preventDefault()
-      console.log(index,value)
-    },
+    }
   }
 }
 </script>
 <style lang="scss">
+.mescroll {
+  position: fixed;
+  top: 57px;
+  bottom: 0;
+  height: auto;
+}
 </style>

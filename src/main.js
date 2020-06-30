@@ -11,16 +11,12 @@ import store from './store'
 import VueLazyload from 'vue-lazyload'
 import '@/permission'
 
-import VirtualCollection from 'vue-virtual-collection'
-
-Vue.use(VirtualCollection)
-
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-// import style
 import 'swiper/css/swiper.css'
-
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+
+import waterfall from 'vue-waterfall2'
+Vue.use(waterfall)
 
 
 import wechat from './utils/wechat'
@@ -28,8 +24,6 @@ if (wechat.isWechat()) {
   Vue.prototype.$wechat = wechat
 }
 
-import waterfall from 'vue-waterfall2'
-Vue.use(waterfall)
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

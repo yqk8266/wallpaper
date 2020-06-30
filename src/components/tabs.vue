@@ -28,9 +28,9 @@
           <li>
             <a href="/#/feizhuliu" class="nav-link" rel="nofollow">非主流</a>
           </li>
-          <li>
+          <!-- <li>
             <a href="/#/phone" class="nav-link" rel="nofollow">手机壁纸</a>
-          </li>
+          </li>-->
           <!-- <li> <a href="javascript:;" class="nav-link">分类</a>
             <div class="nav-m clearfix tran"><a href="/4kfengjing/" title="4K风景图片">4K风景</a><a href="/4kmeinv/"
                 class="curr" title="4K美女图片">4K美女</a><a href="/4kyouxi/" title="4K游戏图片">4K游戏</a><a href="/4kdongman/"
