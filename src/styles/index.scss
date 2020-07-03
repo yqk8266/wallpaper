@@ -341,9 +341,12 @@ div:focus {
   padding-left: 15px;
   padding-bottom: 15px;
   height: 27rem;
+  text-align: center;
+  overflow: hidden;
   img{
-    width:100%;
+    // width:100%;
     height: 95%;
+    width: auto;
   }
   .cell-item-body{
     .cell-item-desc{

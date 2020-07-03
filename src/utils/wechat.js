@@ -16,6 +16,7 @@ export default {
   initJssdk: function (callback) {
     let urls = encodeURIComponent(window.location.href.split('#')[0])
     axios.get("http://shenghuojun.zt.raiyi.com/promotion/service/sys/jsConfig?accountUUID=86176aa65a0b428da654f9d9d82ca0f1&url=" + urls).then(res => {
+      // axios.get("http://5a88.nat123.net/promotion/service/sys/jsConfig?accountUUID=05f142fe9a194473ba13b60d701771ea&url=" + urls).then(res => {
       let response = res.data.data
       jweixin.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。

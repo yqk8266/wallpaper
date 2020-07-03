@@ -135,7 +135,11 @@ export default {
       let that = this
       let data = this.$refs.swiper.$swiper.activeIndex
       let dataObj = this.imgList[data]
+      if(window.history){
+          window.history.replaceState(null, null, `#/phone/category/detail?id=${dataObj.id}&categoryId=${dataObj.categoryId}`)
+      }
       if (this.$wechat && this.$wechat.isWechat()) {
+        
         this.$wechat.share({  
               title:dataObj.title,
               desc: 'wp.8yx.co,找寻属于你自己的精选壁纸~',  
